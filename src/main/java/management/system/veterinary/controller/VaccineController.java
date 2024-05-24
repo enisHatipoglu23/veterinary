@@ -1,4 +1,4 @@
-package management.system.veterinary.api;
+package management.system.veterinary.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -9,19 +9,13 @@ import management.system.veterinary.core.result.ResultData;
 import management.system.veterinary.core.utils.ResultHelper;
 import management.system.veterinary.dto.requests.vaccine.VaccineSaveRequest;
 import management.system.veterinary.dto.requests.vaccine.VaccineUpdateRequest;
-import management.system.veterinary.dto.responses.animal.AnimalResponse;
-import management.system.veterinary.dto.responses.appointment.AppointmentResponse;
 import management.system.veterinary.dto.responses.vaccine.VaccineResponse;
-import management.system.veterinary.entities.Animal;
-import management.system.veterinary.entities.Appointment;
 import management.system.veterinary.entities.Vaccine;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/v1/vaccines")

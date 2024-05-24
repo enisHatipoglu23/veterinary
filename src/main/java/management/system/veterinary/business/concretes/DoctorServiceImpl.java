@@ -1,16 +1,14 @@
 package management.system.veterinary.business.concretes;
 
 import lombok.RequiredArgsConstructor;
-import management.system.veterinary.business.abstracts.DoctorService;
 import management.system.veterinary.core.exception.NotFoundException;
-import management.system.veterinary.entities.Customer;
 import management.system.veterinary.entities.Doctor;
 import management.system.veterinary.repository.DoctorRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class DoctorManager implements DoctorService {
+public class DoctorServiceImpl implements management.system.veterinary.business.abstracts.DoctorServiceImpl {
 
     private final DoctorRepository doctorRepository;
     @Override

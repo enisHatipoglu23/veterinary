@@ -1,8 +1,6 @@
 package management.system.veterinary.core.exception.handler;
 
-import management.system.veterinary.core.exception.CustomerAlreadyExistsException;
-import management.system.veterinary.core.exception.NotAvailableException;
-import management.system.veterinary.core.exception.NotFoundException;
+import management.system.veterinary.core.exception.*;
 import management.system.veterinary.core.result.Result;
 import management.system.veterinary.core.result.ResultData;
 import management.system.veterinary.core.utils.ResultHelper;
@@ -23,14 +21,23 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ResultHelper.notFoundError(e.getMessage()), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(CustomerAlreadyExistsException.class)
-    public ResponseEntity<Result> handleCustomerAlreadyExistsException(CustomerAlreadyExistsException e){
-        return new ResponseEntity<>(ResultHelper.customerAlreadyExistsError(e.getMessage()), HttpStatus.BAD_REQUEST);
-    }
+//    @ExceptionHandler(CustomerAlreadyExistsException.class)
+//    public ResponseEntity<Result> handleCustomerAlreadyExistsException(CustomerAlreadyExistsException e){
+//        return new ResponseEntity<>(ResultHelper.customerAlreadyExistsError(e.getMessage()), HttpStatus.BAD_REQUEST);
+//    }
 
     @ExceptionHandler(VaccineStillEffective.class)
     public ResponseEntity<Result> handleVaccineStillEffectiveException(VaccineStillEffective e){
-        return new ResponseEntity<>(ResultHelper.customerAlreadyExistsError(e.getMessage()), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(ResultHelper.vaccineStillEffectiveError(e.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(BeforeOnDateException.class)
+    public ResponseEntity<Result> handleBeforeOnDateException(BeforeOnDateException e){
+        return new ResponseEntity<>(ResultHelper.vaccineStillEffectiveError(e.getMessage()), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(MinimumProtectionTimeException.class)
+    public ResponseEntity<Result> handleMinimumProtectionTimeException(MinimumProtectionTimeException e){
+        return new ResponseEntity<>(ResultHelper.minimumProtectionTimeError(e.getMessage()), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NotAvailableException.class)

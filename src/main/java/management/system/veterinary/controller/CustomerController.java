@@ -1,4 +1,4 @@
-package management.system.veterinary.api;
+package management.system.veterinary.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -7,14 +7,10 @@ import management.system.veterinary.core.config.modelMapper.ModelMapperService;
 import management.system.veterinary.core.result.Result;
 import management.system.veterinary.core.result.ResultData;
 import management.system.veterinary.core.utils.ResultHelper;
-import management.system.veterinary.dto.requests.animal.AnimalUpdateRequest;
 import management.system.veterinary.dto.requests.customer.CustomerSaveRequest;
 import management.system.veterinary.dto.requests.customer.CustomerUpdateRequest;
-import management.system.veterinary.dto.responses.animal.AnimalResponse;
 import management.system.veterinary.dto.responses.customer.CustomerResponse;
-import management.system.veterinary.entities.Animal;
 import management.system.veterinary.entities.Customer;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

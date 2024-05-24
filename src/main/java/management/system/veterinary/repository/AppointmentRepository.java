@@ -6,13 +6,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public interface AppointmentRepository extends JpaRepository<Appointment, Long> {
-    List<Appointment> findByDoctorAndAppointmentDate(Doctor doctor, LocalDate appointmentDate);
-    boolean existsByDoctorAndAppointmentDateAndAppointmentTime(Doctor doctor, LocalDate appointmentDate, LocalTime appointmentTime);
+    List<Appointment> findByDoctorAndAppointmentDateTime(Doctor doctor, LocalDateTime appointmentDateTime);
+    boolean existsByDoctorAndAppointmentDateTime(Doctor doctor, LocalDateTime appointmentDateTime);
 
-    List<Appointment> findByAppointmentDateBetweenAndAnimalName(LocalDate startDate, LocalDate endDate, String animalName);
+    List<Appointment> findByAppointmentDateTimeBetweenAndAnimalName(LocalDateTime startDate, LocalDateTime endDate, String animalName);
 }

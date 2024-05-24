@@ -2,38 +2,45 @@ package management.system.veterinary.business.concretes;
 
 import lombok.RequiredArgsConstructor;
 import management.system.veterinary.business.abstracts.AnimalService;
-import management.system.veterinary.business.abstracts.VaccineService;
-import management.system.veterinary.core.exception.handler.VaccineStillEffective;
+import management.system.veterinary.core.exception.MinimumProtectionTimeException;
+import management.system.veterinary.core.exception.VaccineStillEffective;
 import management.system.veterinary.entities.Animal;
 import management.system.veterinary.entities.Vaccine;
 import management.system.veterinary.repository.VaccineRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class VaccineManager implements VaccineService {
+public class VaccineServiceImpl implements management.system.veterinary.business.abstracts.VaccineService {
     private final VaccineRepository vaccineRepository;
     private final AnimalService animalService;
 
 
     @Override
     public Vaccine save(Vaccine vaccine) {
-        List<Vaccine> existingVaccineList = this.vaccineRepository.findByNameAndCodeAndAnimal_Id(
-                vaccine.getName(),
-                vaccine.getCode(),
-                vaccine.getAnimal().getId()
-        );
-        for(Vaccine existingVaccine : existingVaccineList){
-            if(existingVaccine.getProtectionEndDate().isAfter(vaccine.getProtectionStartDate())){
-                throw new VaccineStillEffective();
+        long daysBetween = ChronoUnit.DAYS.between(vaccine.getProtectionStartDate(), vaccine.getProtectionEndDate());
+        if(daysBetween >= 10){
+            List<Vaccine> existingVaccineList = this.vaccineRepository.findByNameAndCodeAndAnimal_Id(
+                    vaccine.getName(),
+                    vaccine.getCode(),
+                    vaccine.getAnimal().getId()
+            );
+            for(Vaccine existingVaccine : existingVaccineList){
+                if(existingVaccine.getProtectionEndDate().isAfter(vaccine.getProtectionStartDate())){
+                    throw new VaccineStillEffective();
+                }
             }
+            //test et.
+            Animal animal = this.animalService.get(vaccine.getAnimal().getId());
+            vaccine.setAnimal(animal);
+        }else{
+            throw new MinimumProtectionTimeException();
         }
-        //test et.
-        Animal animal = this.animalService.get(vaccine.getAnimal().getId());
-        vaccine.setAnimal(animal);
+
 
         return this.vaccineRepository.save(vaccine);
     }

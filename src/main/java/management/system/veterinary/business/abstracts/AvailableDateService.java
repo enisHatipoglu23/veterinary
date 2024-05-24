@@ -1,6 +1,5 @@
 package management.system.veterinary.business.abstracts;
 
-import management.system.veterinary.entities.Animal;
 import management.system.veterinary.entities.AvailableDate;
 
 public interface AvailableDateService {

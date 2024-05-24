@@ -1,8 +1,6 @@
 package management.system.veterinary.business.concretes;
 
 import lombok.RequiredArgsConstructor;
-import management.system.veterinary.business.abstracts.CustomerService;
-import management.system.veterinary.core.exception.CustomerAlreadyExistsException;
 import management.system.veterinary.core.exception.NotFoundException;
 import management.system.veterinary.entities.Customer;
 import management.system.veterinary.repository.CustomerRepository;
@@ -10,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class CustomerManager implements CustomerService {
+public class CustomerServiceImpl implements management.system.veterinary.business.abstracts.CustomerService {
 
     private final CustomerRepository customerRepository;
 

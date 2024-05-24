@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -18,10 +18,7 @@ public class Appointment {
     private long id;
 
     @Column(name = "appointment_date")
-    private LocalDate appointmentDate;
-
-    @Column(name = "appointment_time")
-    private LocalTime appointmentTime;
+    private LocalDateTime appointmentDateTime;
 
     @ManyToOne
     @JoinColumn(name = "appointment_doctor_id")

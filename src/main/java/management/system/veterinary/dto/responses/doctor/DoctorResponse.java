@@ -27,5 +27,4 @@ public class DoctorResponse {
 
     private List<AvailableDateResponse> availableDateList;
 
-//    private List<AppointmentResponse> appointmentList;
 }

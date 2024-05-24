@@ -1,7 +1,6 @@
 package management.system.veterinary.business.concretes;
 
 import lombok.RequiredArgsConstructor;
-import management.system.veterinary.business.abstracts.AnimalService;
 import management.system.veterinary.core.exception.NotFoundException;
 import management.system.veterinary.entities.Animal;
 import management.system.veterinary.repository.AnimalRepository;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class AnimalManager implements AnimalService {
+public class AnimalServiceImpl implements management.system.veterinary.business.abstracts.AnimalService {
 
     private final AnimalRepository animalRepository;
     @Override

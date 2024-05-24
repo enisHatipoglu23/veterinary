@@ -1,28 +1,21 @@
-package management.system.veterinary.api;
+package management.system.veterinary.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import management.system.veterinary.business.abstracts.AnimalService;
 import management.system.veterinary.business.abstracts.AppointmentService;
 import management.system.veterinary.core.config.modelMapper.ModelMapperService;
 import management.system.veterinary.core.result.Result;
 import management.system.veterinary.core.result.ResultData;
 import management.system.veterinary.core.utils.ResultHelper;
-import management.system.veterinary.dto.requests.animal.AnimalSaveRequest;
-import management.system.veterinary.dto.requests.animal.AnimalUpdateRequest;
 import management.system.veterinary.dto.requests.appointment.AppointmentSaveRequest;
 import management.system.veterinary.dto.requests.appointment.AppointmentUpdateRequest;
-import management.system.veterinary.dto.responses.animal.AnimalResponse;
 import management.system.veterinary.dto.responses.appointment.AppointmentResponse;
-import management.system.veterinary.dto.responses.customer.CustomerResponse;
-import management.system.veterinary.entities.Animal;
 import management.system.veterinary.entities.Appointment;
-import management.system.veterinary.entities.Customer;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -47,7 +40,7 @@ public class AppointmentController {
             @RequestParam("startDate") LocalDate startDate,
             @RequestParam("endDate") LocalDate endDate,
             @RequestParam("animalName") String animalName){
-        List<Appointment> appointmentList = this.appointmentService.getByDateBetweenAndAnimalName(startDate, endDate, animalName);
+        List<Appointment> appointmentList = this.appointmentService.getByDateBetweenAndAnimalName(startDate.atTime(8,30), endDate.atTime(8,30), animalName);
         List<AppointmentResponse> appointmentResponseList = appointmentList.stream()
                 .map(appointment -> modelMapper.forResponse().map(appointment, AppointmentResponse.class)).toList();
         return ResultHelper.success(appointmentResponseList);

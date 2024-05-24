@@ -10,6 +10,7 @@ import management.system.veterinary.entities.Animal;
 import management.system.veterinary.entities.Doctor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Data
@@ -21,14 +22,11 @@ public class AppointmentUpdateRequest {
     @NotEmpty
     private long id;
     @NotNull(message = "Appointment date cannot be null.")
-    private LocalDate appointmentDate;
-
-    @NotNull(message = "Appointment time cannot be null.")
-    private LocalTime appointmentTime;
+    private LocalDateTime appointmentDateTime;
 
     @NotNull(message = "Doctor field cannot be null.")
-    private Doctor doctor;
+    private long doctorId;
 
     @NotNull(message = "Animal field cannot be null.")
-    private Animal animal;
+    private long animalId;
 }
